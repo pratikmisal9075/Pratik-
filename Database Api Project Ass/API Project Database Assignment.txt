@@ -1,0 +1,227 @@
+create table P_User (UId serial primary key,
+					 UProfileUrl varchar(50),
+				  UFName varchar(30),
+				  ULName varchar(30),
+				  UGender char(1),
+				  UEmailId varchar(60));
+
+create table UAddress (UAId serial primary key ,
+					   UID int references P_User(UID),
+					   UAddress1 varchar(50),
+					   UAddress2 varchar(50),
+					   UCity varchar(50),
+					   UState varchar(50),
+					   UZipCode int,
+					   UCountry varchar(50)
+					   ); 
+
+create table project(PId serial primary key,
+					 UId int references P_User(UID),
+					 PName varchar(100),
+					 PLogoUrl varchar(100),
+					 PDesc varchar(100),
+					 PTechnology varchar(50)
+);
+
+create table modules(MId serial primary key,
+					 PId int references project(PID),
+					 MName varchar(60) not null ,
+					 MDesc varchar(100));
+					 
+create table api(ApiID serial primary key,
+				 MId int references modules(MId),
+				 ApiName varchar(30),
+				 ApiMethod varchar(50),
+				 ApiDesc varchar(10)
+			);
+			
+			
+			
+select  from P_User;
+
+insert into P_User(uprofileurl,ufname,ulname,ugender,uemailid)
+values 
+	('COneDrivePicturesScreenshots','Pratik','Misal','M','pratikmisal@gmail.com'),
+	('COneDrivePicturesScreenshots','Priti','Rautray','F','pritirautray@gmail.com'),
+	('COneDrivePicturesScreenshots','Sakshi','Murade','F','sakshimurade@gmail.com'),
+	('COneDrivePicturesScreenshots','Sagar','Nawale','M','sagarnawale@gmail.com'),
+	('COneDrivePicturesScreenshots','Prajakta','Bendre','F','prajaktabendre@gmail.com'),
+	('COneDrivePicturesScreenshots','Rakesh','Durafe','M','rakeshdurafe@gmail.com'),
+	('COneDrivePicturesScreenshots','Viki','Jagtap','M','vikijagtap@gmail.com');
+	
+select  from UAddress; 
+
+insert into UAddress (uid,uaddress1,uaddress2,ucity,ustate,uzipcode,ucountry) 
+values
+(1,'Shirur','sangamner','pune','Maharasahtra',412210,'India'),
+(2,'Nagar','Nagapur','Ahemadnagr','Rajansthan',411110,'America'),
+(3,'Saradwadi','Annapur','Satara','Dheli',478964,'India'),
+(4,'Nighoj','Shirval','Kolhapur','Punjab',789632,'Africa'),
+(5,'Nasrapur','Katraj','Aurangabad','Bihar',459687,'Newzland'),
+(6,'Kothrud','sangamner','Nashik','Karnataka',145223,'Ingland'),
+(7,'Shirur','Pune','Latur','Banglor',784512,'Shrilanka');
+
+select  from project;
+
+insert into project (uid,pname,plogourl,pdesc,ptechnology)
+values 
+(1,'Light Bill System','CPicturesScreenshots','Desktop Base Application','Java'),
+(2,'Food Ordering System','CPicturesScreenshots','Web Application','Python'),
+(3,'Airline Reservation System','CPicturesScreenshots','Android Application','C#'),
+(4,'Photo Editor System','CPicturesScreenshots','Desktop Application','Java'),
+(5,'E-Health care System','CPicturesScreenshots','Web Application','PHP'),
+(6,'E-Mobile care System','CPicturesScreenshots','Android Application','Dot Net'),
+(7,'E-Shop System','CPicturesScreenshots','Desktop Base Application','Jsp');
+
+select  from modules;
+
+insert into modules(pid,mname,mdesc) 
+values 
+(1,'Admin','qwewde'),
+(1,'User','tfetftyfqe'),
+(1,'Customer','tffeeqyd'),
+(2,'Admin','gvgvd'),
+(2,'Customer','gvqehegvdg'),
+(3,'User','ytfdytf'),
+(3,'Admin','ededtq'),
+(4,'Customer','gwutwe'),
+(4,'User','wueuuew'),
+(5,'Account','ijiqeiejoi'),
+(5,'Admin','oijqoijd'),
+(6,'Customer','yqyyyuq'),
+(6,'Admin','ytwey'),
+(7,'Customer','ytwey'),
+(7,'User','ytwey');
+
+select  from api;
+
+insert into api (mid,apiname,apimethod,apidesc) 
+values 
+(1,'Create()','Get','yttfyef'),
+(1,'Update()','Post','hbwr'),
+(1,'Delete()','Post','gvvwg'),
+(2,'Search()','Get','gvvwg'),
+(2,'Delete()','Get','iuuty'),
+(3,'Create()','Post','iuuty'),
+(3,'Update()','Get','iuuty'),
+(3,'Delete()','Post','iuuty'),
+(4,'Search()','Get','urfug'),
+(4,'Delete()','Get','iuuty'),
+(4,'Upadte()','Post','urff'),
+(5,'Upadte()','Get','iuuty'),
+(5,'Create()','Post','iuuty'),
+(5,'Delete()','Get','iuuty'),
+(5,'Search()','Post','iuuty');
+
+select  from project;
+
+--Q6
+select pname from project;
+--
+select  from modules;
+
+--Q7
+select mname from modules;
+--
+select  from api;
+--Q8
+select apiname from api;
+--
+--Q9
+select ufname,ulname from p_user;
+--
+
+--Q10
+select uaddress1,uaddress2 from uaddress;
+--
+
+--Q11
+select p.pname,m.mname,a.apiname
+from project p join modules m on p.pid=m.pid
+join api a on m.mid=a.mid;
+--
+
+--Q12
+
+select a.apiname,p.pname
+from project p join modules m on p.pid=m.pid
+join api a on m.mid=a.mid;
+
+--Q13
+
+select m.mname,count(a.apiname)
+from project p join modules m on p.pid=m.pid
+join api a on m.mid=a.mid
+group by m.mname;
+
+--Q14
+
+select a.apiname,count(a.apiname)
+from project p join modules m on p.pid=m.pid
+join api a on m.mid=a.mid
+group by a.apiname;
+
+--Q15
+select u.ufname,u.ulname,uad.uaddress1,uad.uaddress2
+from P_User u join UAddress uad on u.uid=uad.uid;
+--
+
+--Q16
+select pj.pname
+from p_user u join project pj on u.uid=pj.uid
+where ufname='Pratik';
+--
+
+--Q17
+select pname
+from project 
+where pname like '%Bill%';
+--
+
+
+--Q19
+select up.ufname,up.ulname,ua.ucountry
+from p_user up join UAddress ua on up.uid=ua.uid
+group by ua.ucountry;
+--Not Complite
+
+--Q20
+select up.ufname,up.ulname
+from p_user up join UAddress ua on up.uid=ua.uid
+where ua.uzipcode In (412210,789632);
+--
+
+--Q21
+select apiname
+from api
+where apimethod='Get';
+--
+
+--Q22
+select apiname
+from api
+where apimethod='Post';
+--
+
+--Q23
+select apiname
+from api
+where apimethod='Delete';
+--
+
+--Q24
+select apiname
+from api
+where apimethod='Put';
+--
+
+--Q25
+select ap.apiname
+from modules md join api ap on md.mid=ap.mid
+where md.mname='Admin';
+--
+
+--Q26
+select md.mname
+from modules md join project pj on pj.pid=md.pid
+where pj.pname='Light Bill System';
