@@ -1,0 +1,14 @@
+Queris:-
+1)select director_country,count(director_country)
+from director
+group by director_country;
+
+3)select director_fname ,director_age,count(director_country)
+from director
+group by director_fname ,director_age
+order by director_fname ,director_age;
+
+4)select movie_lang ,sum(movie_length)
+from movies
+group by movie_lang
+having sum(movie_length)>100;

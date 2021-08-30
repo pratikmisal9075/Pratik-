@@ -1,0 +1,35 @@
+Quries:
+
+1) 
+select director_fname,director_country,director_age
+from director
+where director_country='America'
+order by director_age asc;
+
+2)
+select distinct director_country
+from director
+
+create table actor(
+	a_id serial primary key,
+	a_fname varchar(30),
+	a_lname varchar(30),
+	a_dob date,
+	a_gender char(1),
+	m_id int  references movies(movie_id)
+); 
+
+insert into actor(a_id,a_fname,a_lname,a_dob,a_gender,m_id)
+values 
+(1,'Depeeka','padukon','1988-10-03','F',1),
+(2,'Ranveer','Kapoor','1991-08-23','M',3),
+(3,'Aalia','Bhat','1988-10-03','F',2),
+(4,'Ranveer','Singh','2000-03-21','M',4),
+(5,'Anushka','Sharma','1998-11-03','F',5);
+
+select * from actor;
+
+3)
+select a_fname,a_lname,a_dob
+from actor
+where a_gender='F' And a_dob >'1998-01-01';

@@ -1,0 +1,32 @@
+
+create table movie_revenues(
+	revenues_id serial primary key,
+    movie_id int references movies(movie_id),
+	domestic_takings numeric(6,2),
+	international_takings numeric(6,2)
+);
+
+select * from movie_revenues;
+
+insert into movie_revenues(movie_id,domestic_takings,international_takings)
+values
+(1,0.55,22.0),
+(4,10.55,15.0),
+(5,1.55,22.11),
+(2,5.55,4.0),
+(3,0.55,12.0)
+
+select * from  movie_revenues;
+Queries:-
+
+1) select * from movie_revenues
+order by international_takings
+Limit 3;
+
+select * from director;
+
+2) select concat(director_fname,' ',director_lname) as director_fullName from director;
+
+3) select * from actor
+where a_dob is not null AND
+	a_fname is not null;

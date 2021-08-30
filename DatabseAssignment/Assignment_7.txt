@@ -1,0 +1,22 @@
+1)select count(*) 
+from actor
+where a_dob>'1991-01-01';
+
+select * from movie_revenues;
+
+2)select max(domestic_takings) from movie_revenues;
+select min(domestic_takings) from movie_revenues;
+
+select * from movies;
+
+3)select sum(movie_length) 
+from movies 
+where movie_lang='Hindi' ; 
+
+4)select count(*) 
+from director
+where director_country='America';
+
+5)select avg(movie_length)
+from movies
+where movie_lang='English';

@@ -1,0 +1,30 @@
+create table owners(
+	id serial primary key,
+	first_name varchar(30),
+	last_name varchar(30),
+	city varchar(30),
+	state char(2)
+
+	select * from owners;
+	
+	create table pets(
+		id serial primary key,
+		species varchar(30),
+		full_name varchar(30),
+		age int,
+		owner_id int references owners(id)
+	);
+	
+
+	select * from pets;
+
+Queries:-	
+     1) alter table owners
+	add column email varchar(50) unique;
+	
+        select * from owners;
+	
+     2) alter table owners
+	alter column last_name type varchar(50);
+	
+	select * from owners;

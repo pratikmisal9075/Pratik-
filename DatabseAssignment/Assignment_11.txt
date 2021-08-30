@@ -1,0 +1,14 @@
+1)
+select ac.a_fname,ac.a_lname 
+from director d 
+join movies mo ON d.director_id=mo.d_id 
+Join actor ac ON mo.movie_id=ac.m_id
+where d.director_fname='Pratik' And d.director_lname='Misal';
+
+2)
+select d.director_fname,d.director_lname,sum(mr.domestic_takings) as total_domestic_taking
+from director d 
+join movies mo ON d.director_id=mo.d_id
+join movie_revenues mr ON  mo.movie_id = mr.movie_id
+group by d.director_fname,d.director_lname
+order by total_domestic_taking DESC;

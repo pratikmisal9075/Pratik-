@@ -1,0 +1,60 @@
+create table owners(
+	id serial primary key,
+	first_name varchar(30),
+	last_name varchar(30),
+	city varchar(30),
+	state char(2)
+
+	select * from owners;
+	
+	create table pets(
+		id serial primary key,
+		species varchar(30),
+		full_name varchar(30),
+		age int,
+		owner_id int references owners(id)
+	);
+	
+	select * from pets;
+	
+	alter table owners
+	add column email varchar(50) unique;
+	
+	select * from owners;
+	
+	alter table owners
+	alter column last_name type varchar(50);
+	
+	select * from owners;
+	
+	insert into owners (first_name,last_name,city,state,email)
+	values 
+	('Pratik','Misal','Pune','MA','pratik@gmail.com'),
+	('Rakesh','Durafe','Nagar','RJ','rakesh@gmail.com'),
+	('Priti','Rautray','Aurangabad','DD','priti@gmail.com'),
+	('Prajakta','Bendre','Satara','GT','prajakta@gmail.com'),
+	('Sakshi','Murade','Junnar','TN','sakshi@gmail.com'),
+	('Sagar','Nawale','Sangamner','AP','sagar@gmail.com');
+	
+	select * from owners;
+	
+	insert into pets(species,full_name,age,owner_id)
+	values 
+	('Dog','Rex',6,1),
+	('Rabbit','Fluffy',8,2),
+	('Cat','Tom',10,5),
+	('Mouse','Jerry',3,3),
+	('Dog','Biggles',13,3),
+	('Tortois','Squirtle',5,4);
+
+Queris:-	
+	select * from pets;
+	
+1)	update pets
+	set age=3
+	where full_name='Fluffy';
+	
+	select * from pets;
+	
+2)	delete from owners
+	where first_name='Rakesh';

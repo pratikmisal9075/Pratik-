@@ -1,0 +1,11 @@
+1)
+select d.director_fname,d.director_lname,d.director_age,mo.movie_name
+from director d left join movies mo 
+on d.director_id = mo.d_id
+where director_country='America';
+
+2)
+select d.director_fname,d.director_lname,count(mo.movie_id)
+from director d left join movies mo 
+on d.director_id = mo.d_id
+group by d.director_fname,d.director_lname;

@@ -1,0 +1,56 @@
+create table Director(
+	director_id serial primary key,
+	director_FName varchar(30),
+	director_LName varchar(30),
+	director_Country varchar(30)
+);
+
+select * from Director;
+
+create table movies(
+	movie_id serial primary key,
+	movie_name varchar(50) not null,
+	movie_length Int,
+	movie_lang varchar(30),
+	release_date Date,
+	d_id int references Director(director_id)
+);
+
+select * from movies;
+
+insert into 
+director(director_FName,director_LName,director_Country)
+values
+('Sanjay','Bhansali','America'),
+('Pratik','Misal','France'),
+('Rakesh','Durafe','Germoney'),
+('Priti','Rautray','China'),
+('Prajakta','Bendre','London');
+
+select * from director;
+
+insert into 
+movies(movie_name ,movie_length,movie_lang,release_date,d_id)
+values
+('Bajirao Mastani','200','Hindi','2016-12-19',2),
+('Tanaji','200','English','1970-01-19',1),
+('Bahu Bali','200','Hindi','2016-12-19',3),
+('Avengers','200','Tamil','2016-12-19',2),
+('Dear Zindagi','200','English','2016-12-19',4);
+
+select * from movies;
+
+1) select movie_name,release_date
+   from movies;
+
+2) select director_FName,director_LName
+   from director
+   where director_Country='America';
+
+3) select movie_name
+   from movies
+   where release_date > '1970-01-19';
+
+4) select movie_name
+   from movies
+   where movie_length>90 AND movie_lang='English';
